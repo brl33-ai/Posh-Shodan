@@ -1,4 +1,4 @@
-Posh-Shodan
+Posh-Shodan (for MacOS)
 ===========
 
 PowerShell Module to interact with the Shodan REST API https://developer.shodan.io/ provided with the proper API key. 
