@@ -6,12 +6,12 @@ PowerShell Module to interact with the Shodan REST API https://developer.shodan.
 # Install
 To install the module including all source code you can just run in a PowerShell v3 or higher session the following command:
 <pre>
-iex (New-Object Net.WebClient).DownloadString("https://gist.githubusercontent.com/mahatah/e72cd157ecfbb5c23d36e1140ff38c20/raw/6db1f8a3d7088f5708aa966757ca32406dc7d0ed/PoshShodanInstallMacOS.ps1")
+iex (New-Object Net.WebClient).DownloadString("https://gist.githubusercontent.com/mahatah/e72cd157ecfbb5c23d36e1140ff38c20/raw/71f6d2ba428e9e4c72db68a039ddd10a1086b202/PoshShodanInstallMacOS.ps1")
 </pre>
 
 The installation process should look like:
 <pre>
-PS C:\> iex (New-Object Net.WebClient).DownloadString("https://gist.githubusercontent.com/mahatah/e72cd157ecfbb5c23d36e1140ff38c20/raw/6db1f8a3d7088f5708aa966757ca32406dc7d0ed/PoshShodanInstallMacOS.ps1")
+PS C:\> iex (New-Object Net.WebClient).DownloadString("https://gist.githubusercontent.com/mahatah/e72cd157ecfbb5c23d36e1140ff38c20/raw/71f6d2ba428e9e4c72db68a039ddd10a1086b202/PoshShodanInstallMacOS.ps1")
 Downloading latest version of Posh-Shodan (for MacOS) from https://github.com/mahatah/Posh-Shodan/archive/master.zip
 File saved to /tmp/Posh-Shodan.zip
 Relocating folder to PowerShell Modules location
