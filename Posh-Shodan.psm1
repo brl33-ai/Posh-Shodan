@@ -1,4 +1,4 @@
-﻿#  .ExternalHelp Posh-Shodan.Help.xml
+#  .ExternalHelp Posh-Shodan.Help.xml
 function Set-ShodanAPIKey
 {
     [CmdletBinding()]
@@ -44,16 +44,16 @@ function Set-ShodanAPIKey
         $ConfigName = 'api.key'
         $saltname   = 'salt.rnd'
         
-        if (!(Test-Path -Path "$($env:AppData)\$FolderName"))
+        if (!(Test-Path -Path "$HOME/.local/share/powershell/Modules/$FolderName"))
         {
             Write-Verbose -Message 'Seems this is the first time the config has been set.'
-            Write-Verbose -Message "Creating folder $("$($env:AppData)\$FolderName")"
-            New-Item -ItemType directory -Path "$($env:AppData)\$FolderName" | Out-Null
+            Write-Verbose -Message "Creating folder $("$HOME/.local/share/powershell/Modules/$FolderName")"
+            New-Item -ItemType directory -Path "$HOME/.local/share/powershell/Modules/$FolderName" | Out-Null
         }
         
-        Write-Verbose -Message "Saving the information to configuration file $("$($env:AppData)\$FolderName\$ConfigName")"
-        "$($EncryptedString)"  | Set-Content  "$($env:AppData)\$FolderName\$ConfigName" -Force
-        Set-Content -Value $SaltBytes -Encoding Byte -Path "$($env:AppData)\$FolderName\$saltname" -Force
+        Write-Verbose -Message "Saving the information to configuration file $("$HOME/.local/share/powershell/Modules/$FolderName/$ConfigName")"
+        "$($EncryptedString)"  | Set-Content  "$HOME/.local/share/powershell/Modules/$FolderName/$ConfigName" -Force
+        Set-Content -Value $SaltBytes -AsByteStream -Path "$HOME/.local/share/powershell/Modules/$FolderName/$saltname" -Force
     }
     End
     {}
@@ -76,18 +76,18 @@ function Read-ShodanAPIKey
     Begin
     {
         # Test if configuration file exists.
-        if (!(Test-Path -Path "$($env:AppData)\Posh-Shodan\api.key"))
+        if (!(Test-Path -Path "$HOME/.local/share/powershell/Modules/Posh-Shodan/api.key"))
         {
             throw 'Configuration has not been set, Set-ShodanAPIKey to configure the API Keys.'
         }
     }
     Process
     {
-        Write-Verbose -Message "Reading key from $($env:AppData)\Posh-Shodan\api.key."
-        $ConfigFileContent = Get-Content -Path "$($env:AppData)\Posh-Shodan\api.key"
+        Write-Verbose -Message "Reading key from $HOME/.local/share/powershell/Modules/Posh-Shodan/api.key."
+        $ConfigFileContent = Get-Content -Path "$HOME/.local/share/powershell/Modules/Posh-Shodan/api.key"
         Write-Debug -Message "Secure string is $($ConfigFileContent)"
 
-        $SaltBytes = Get-Content -Encoding Byte -Path "$($env:AppData)\Posh-Shodan\salt.rnd" 
+        $SaltBytes = Get-Content -Encoding Byte -Path "$HOME/.local/share/powershell/Modules/Posh-Shodan/salt.rnd" 
         $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList 'user', $MasterPassword
 
         # Derive Key, IV and Salt from Key
